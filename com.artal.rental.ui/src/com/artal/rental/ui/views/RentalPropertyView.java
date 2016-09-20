@@ -1,8 +1,16 @@
 package com.artal.rental.ui.views;
 
+import javax.xml.transform.TransformerFactoryConfigurationError;
+
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.dnd.DND;
+import org.eclipse.swt.dnd.DragSource;
+import org.eclipse.swt.dnd.DragSourceAdapter;
+import org.eclipse.swt.dnd.DragSourceEvent;
+import org.eclipse.swt.dnd.TextTransfer;
+import org.eclipse.swt.dnd.Transfer;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
@@ -75,15 +83,20 @@ public class RentalPropertyView extends ViewPart implements ISelectionListener {
 		lblDu.setText("du: ");
 		
 		debutLabel = new Label(dateComposite, SWT.NONE);
-		debutLabel.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
+		debutLabel.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
 		
 		lblAu = new Label(dateComposite, SWT.NONE);
 		lblAu.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
 		lblAu.setText("au: ");
 		
 		finLabel = new Label(dateComposite, SWT.NONE);
-		finLabel.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
-				
+		finLabel.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
+		
+		setLabelAsDragSource(rentedObjectLabel);
+		setLabelAsDragSource(debutLabel);
+		setLabelAsDragSource(finLabel);
+		setLabelAsDragSource(customerNameLabel);
+		
 		setRental(RentalCoreActivator.getAgency().getRentals().get(0));
 
 	}
@@ -121,5 +134,19 @@ public class RentalPropertyView extends ViewPart implements ISelectionListener {
 				setRental((Rental) selected);
 			}
 		}
+	}
+	
+	public void setLabelAsDragSource(final Label label) {
+		DragSource source = new DragSource(label, DND.DROP_MOVE | DND.DROP_COPY);
+		
+		source.setTransfer(new Transfer[] { TextTransfer.getInstance() });
+		
+		source.addDragListener(new DragSourceAdapter() {
+			public void dragSetData(DragSourceEvent event) {
+				if (TextTransfer.getInstance().isSupportedType(event.dataType)) {
+					event.data = label.getText();
+				}
+			}
+		});
 	}
 }
