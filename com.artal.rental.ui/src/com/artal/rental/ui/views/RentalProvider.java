@@ -2,15 +2,19 @@ package com.artal.rental.ui.views;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import org.eclipse.jface.viewers.IColorProvider;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.LabelProvider;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.widgets.Display;
 
 import com.opcoach.training.rental.Customer;
 import com.opcoach.training.rental.Rental;
 import com.opcoach.training.rental.RentalAgency;
 import com.opcoach.training.rental.RentalObject;
 
-public class RentalProvider extends LabelProvider implements ITreeContentProvider {
+public class RentalProvider extends LabelProvider implements ITreeContentProvider, IColorProvider {
 
 	@Override
 	public Object[] getElements(Object inputElement) {
@@ -84,8 +88,7 @@ public class RentalProvider extends LabelProvider implements ITreeContentProvide
 	
 		public Object[] getChildren() {
 			if (label.equalsIgnoreCase(CUSTOMER)) {
-				return agency.getCustomers().toArray();
-			
+				return agency.getCustomers().toArray();			
 			}
 			if (label.equalsIgnoreCase(LOCATION)) {
 				return agency.getRentals().toArray();
@@ -102,4 +105,30 @@ public class RentalProvider extends LabelProvider implements ITreeContentProvide
 		}
 		
 	}
+
+	@Override
+	public Color getForeground(Object element) {
+		if (element instanceof Customer) {
+			return Display.getCurrent().getSystemColor(SWT.COLOR_BLUE);
+		}
+		if (element instanceof RentalAgency) {
+			return Display.getCurrent().getSystemColor(SWT.COLOR_RED);
+		}
+		if (element instanceof Node) {
+			return Display.getCurrent().getSystemColor(SWT.COLOR_DARK_YELLOW);
+		}
+		if (element instanceof RentalObject) {
+			return Display.getCurrent().getSystemColor(SWT.COLOR_GREEN);
+		}
+		if (element instanceof Rental) {
+			return Display.getCurrent().getSystemColor(SWT.COLOR_DARK_MAGENTA);
+		}
+		return null;
+	}
+
+	@Override
+	public Color getBackground(Object element) {
+		return Display.getCurrent().getSystemColor(SWT.COLOR_WHITE);
+	}
+	
 }
