@@ -7,8 +7,10 @@ import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Display;
 
+import com.artal.rental.ui.RentalUIActivator;
 import com.opcoach.training.rental.Customer;
 import com.opcoach.training.rental.Rental;
 import com.opcoach.training.rental.RentalAgency;
@@ -18,9 +20,8 @@ public class RentalProvider extends LabelProvider implements ITreeContentProvide
 
 	@Override
 	public Object[] getElements(Object inputElement) {
-		Object[] result = null;
 		if (inputElement instanceof Collection<?>) {
-			return ((Collection) inputElement).toArray();
+			return ((Collection<?>) inputElement).toArray();
 		}
 		return null;
 	}
@@ -32,7 +33,7 @@ public class RentalProvider extends LabelProvider implements ITreeContentProvide
 			ArrayList<Node> nodes = new ArrayList<>();
 			nodes.add(new Node(Node.CUSTOMER, (RentalAgency) parentElement));
 			nodes.add(new Node(Node.LOCATION, (RentalAgency) parentElement));
-			nodes.add(new Node(Node.RENTAL_OBBS, (RentalAgency) parentElement));
+			nodes.add(new Node(Node.RENTAL_OBJS, (RentalAgency) parentElement));
 			return nodes.toArray();
 		}
 		else if (parentElement instanceof Node){
@@ -79,7 +80,7 @@ public class RentalProvider extends LabelProvider implements ITreeContentProvide
 
 		public static final String CUSTOMER = "Customers";
 		public static final String LOCATION = "Locations";
-		public static final String RENTAL_OBBS = "Objets à louer";
+		public static final String RENTAL_OBJS = "Objets à louer";
 		
 		private String label;
 		
@@ -93,7 +94,7 @@ public class RentalProvider extends LabelProvider implements ITreeContentProvide
 			if (label.equalsIgnoreCase(LOCATION)) {
 				return agency.getRentals().toArray();
 			}
-			if (label.equalsIgnoreCase(RENTAL_OBBS)) {
+			if (label.equalsIgnoreCase(RENTAL_OBJS)) {
 				return agency.getObjectsToRent().toArray();
 			}
 			return null;
@@ -129,6 +130,34 @@ public class RentalProvider extends LabelProvider implements ITreeContentProvide
 	@Override
 	public Color getBackground(Object element) {
 		return Display.getCurrent().getSystemColor(SWT.COLOR_WHITE);
+	}
+	
+	@Override
+	public Image getImage(Object element) {
+		if (element instanceof Customer) {
+			return RentalUIActivator.getDefault().getImageRegistry().get(RentalUIActivator.IMG_CUSTOMER);
+		}
+		if (element instanceof RentalAgency) {
+			return RentalUIActivator.getDefault().getImageRegistry().get(RentalUIActivator.IMG_AGENCY);
+		}
+		if (element instanceof RentalObject) {
+			return RentalUIActivator.getDefault().getImageRegistry().get(RentalUIActivator.IMG_OBJECT);
+		}
+		if (element instanceof Rental) {
+			return RentalUIActivator.getDefault().getImageRegistry().get(RentalUIActivator.IMG_RENTAL);
+		}
+		if (element instanceof Node) {
+			if (((Node) element).toString().equalsIgnoreCase(Node.CUSTOMER)) {
+				return RentalUIActivator.getDefault().getImageRegistry().get(RentalUIActivator.IMG_CUSTOMER);
+			}
+			if (((Node) element).toString().equalsIgnoreCase(Node.LOCATION)) {
+				return RentalUIActivator.getDefault().getImageRegistry().get(RentalUIActivator.IMG_RENTAL);
+			}
+			if (((Node) element).toString().equalsIgnoreCase(Node.RENTAL_OBJS)) {
+				return RentalUIActivator.getDefault().getImageRegistry().get(RentalUIActivator.IMG_OBJECT);
+			}
+		}
+		return null;
 	}
 	
 }
