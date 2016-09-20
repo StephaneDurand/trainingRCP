@@ -22,6 +22,8 @@ public class RentalPropertyView extends ViewPart {
 	private Label loueLabel;
 	private Label lblDu;
 	private Label lblAu;
+	private Composite dateComposite;
+	private Composite infoComposite;
 	
 	
 
@@ -35,44 +37,46 @@ public class RentalPropertyView extends ViewPart {
 		
 		Group infoGroup =new Group(parent, SWT.NONE);
 		infoGroup.setText("Informations");
-		infoGroup.setLayout(new GridLayout(2, false));
-		
-		rentedObjectLabel = new Label(infoGroup, SWT.NONE);
-		GridData gd = new GridData();
-		gd.grabExcessVerticalSpace = true;
-		gd.grabExcessHorizontalSpace = true;
-		gd.horizontalSpan = 2;
-		gd.horizontalAlignment = SWT.FILL;
-		rentedObjectLabel.setLayoutData(gd);		
+		infoGroup.setLayout(new GridLayout(1, false));
 		GridData gd1 = new GridData();
 		gd1.horizontalSpan = 2;
 		gd1.horizontalAlignment = SWT.FILL;
-		rentedObjectLabel.setLayoutData(gd);	
 		
-		loueLabel = new Label(infoGroup, SWT.NONE);
-		loueLabel.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, true, 1, 1));
+		infoComposite = new Composite(infoGroup, SWT.BORDER);
+		infoComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, false, 1, 1));
+		infoComposite.setLayout(new GridLayout(2, false));
+		
+		rentedObjectLabel = new Label(infoComposite, SWT.NONE);
+		rentedObjectLabel.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 2, 1));
+		
+		loueLabel = new Label(infoComposite, SWT.NONE);
+		loueLabel.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
 		loueLabel.setText("Lou\u00E9 \u00E0: ");
 		
-		customerNameLabel = new Label(infoGroup, SWT.NONE);
-		customerNameLabel.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, true, 1, 1));
+		customerNameLabel = new Label(infoComposite, SWT.NONE);
+		customerNameLabel.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
 		
 		dateGroup = new Group(parent, SWT.NONE);
 		dateGroup.setText("Dates de location");
-		dateGroup.setLayout(new GridLayout(2, false));
+		dateGroup.setLayout(new GridLayout(1, false));
 		
-		lblDu = new Label(dateGroup, SWT.NONE);
-		lblDu.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, true, 1, 1));
+		dateComposite = new Composite(dateGroup, SWT.BORDER);
+		dateComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, false, 1, 1));
+		dateComposite.setLayout(new GridLayout(2, false));
+		
+		lblDu = new Label(dateComposite, SWT.NONE);
+		lblDu.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
 		lblDu.setText("du: ");
 		
-		debutLabel = new Label(dateGroup, SWT.NONE);
-		debutLabel.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, true, 1, 1));
+		debutLabel = new Label(dateComposite, SWT.NONE);
+		debutLabel.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
 		
-		lblAu = new Label(dateGroup, SWT.NONE);
-		lblAu.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, true, 1, 1));
+		lblAu = new Label(dateComposite, SWT.NONE);
+		lblAu.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
 		lblAu.setText("au: ");
-				
-		finLabel = new Label(dateGroup, SWT.NONE);
-		finLabel.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, true, 1, 1));
+		
+		finLabel = new Label(dateComposite, SWT.NONE);
+		finLabel.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
 				
 		setRental(RentalCoreActivator.getAgency().getRentals().get(0));
 
