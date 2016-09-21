@@ -16,6 +16,7 @@ import org.eclipse.swt.widgets.Display;
 
 import com.artal.rental.ui.RentalUIActivator;
 import com.artal.rental.ui.pref.RentalColorPreferences;
+import com.artal.rental.ui.pref.RentalPreferences;
 import com.opcoach.training.rental.Customer;
 import com.opcoach.training.rental.Rental;
 import com.opcoach.training.rental.RentalAgency;
@@ -60,28 +61,27 @@ public class RentalProvider extends LabelProvider implements ITreeContentProvide
 	
 	@Override
 	public String getText(Object element) {
+		String display = super.getText(element);
 		if (element instanceof RentalAgency) {
-			return ((RentalAgency) element).getName();
+			display = ((RentalAgency) element).getName();
 		}
 		if (element instanceof Node) {
-			return ((Node) element).toString();
+			display = ((Node) element).toString();
+			if (RentalUIActivator.getDefault().getPreferenceStore().getBoolean(RentalPreferences.DISPLAY_NUMBER)) {
+				display += " (" + ((Node) element).getChildren().length + ")";
+			}
+			
 		}
 		if (element instanceof RentalObject) {
-			return ((RentalObject) element).getName();
+			display = ((RentalObject) element).getName();
 		}
 		if (element instanceof Customer) {
-			return ((Customer) element).getDisplayName();
+			display = ((Customer) element).getDisplayName();
 		}
-		return super.getText(element);
+		return display;
 	}
 
 	private class Node {
-		
-		public Node(String label, RentalAgency agency) {
-			super();
-			this.label = label;
-			this.agency = agency;
-		}
 
 		public static final String CUSTOMER = "Customers";
 		public static final String LOCATION = "Locations";
@@ -90,8 +90,14 @@ public class RentalProvider extends LabelProvider implements ITreeContentProvide
 		private String label;
 		
 		private RentalAgency agency;
+		
+		public Node(String label, RentalAgency agency) {
+			super();
+			this.label = label;
+			this.agency = agency;
+		}
 
-	
+
 		public Object[] getChildren() {
 			if (label.equalsIgnoreCase(CUSTOMER)) {
 				return agency.getCustomers().toArray();			
