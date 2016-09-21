@@ -21,6 +21,13 @@
             name="Rental Agency View"
             restorable="true">
       </view>
+      <view
+            category="com.artal.rental.ui.views"
+            class="com.artal.rental.ui.views.RentalCustomerView"
+            id="com.artal.rental.ui.views.RentalCustomerView"
+            name="Customer View"
+            restorable="true">
+      </view>
    </extension>
    <extension
          point="org.eclipse.ui.perspectives">
