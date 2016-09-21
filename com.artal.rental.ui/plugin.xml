@@ -30,5 +30,25 @@
             name="Rental Perspective">
       </perspective>
    </extension>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            category="com.artal.rental.ui.pref.rentalpref"
+            class="com.artal.rental.ui.pref.RentalColorPreferences"
+            id="com.artal.rental.ui.pref.colorprefpage"
+            name="Colors">
+      </page>
+      <page
+            class="com.artal.rental.ui.pref.RentalPreferences"
+            id="com.artal.rental.ui.pref.rentalpref"
+            name="Rental">
+      </page>
+   </extension>
+   <extension
+         point="org.eclipse.core.runtime.preferences">
+      <initializer
+            class="com.artal.rental.ui.pref.ColorPrefInit">
+      </initializer>
+   </extension>
 
 </plugin>
