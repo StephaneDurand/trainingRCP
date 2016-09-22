@@ -1,10 +1,17 @@
 package com.artal.rental.ui;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
+import org.eclipse.core.runtime.IExtension;
+import org.eclipse.core.runtime.IExtensionPoint;
 import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.resource.ImageRegistry;
+import org.eclipse.jface.viewers.IColorProvider;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
@@ -26,6 +33,12 @@ public class RentalUIActivator extends AbstractUIPlugin {
 	// The shared instance
 	private static RentalUIActivator plugin;
 	
+	private Map<String, PaletteDesc> palettesMap = new HashMap<String, PaletteDesc>();
+	
+	public Map<String, PaletteDesc> getPalettesMap() {
+		return palettesMap;
+	}
+
 	/**
 	 * The constructor
 	 */
@@ -40,6 +53,7 @@ public class RentalUIActivator extends AbstractUIPlugin {
 		super.start(context);
 		plugin = this;
 		getExtensionsQuickAccess();
+		readPalettes();
 		
 	}
 
@@ -82,4 +96,24 @@ public class RentalUIActivator extends AbstractUIPlugin {
 		}
 	}
 
+	
+	private void readPalettes() {
+		IExtensionRegistry reg = Platform.getExtensionRegistry();
+		IExtensionPoint extensionPoint = reg.getExtensionPoint("com.artal.rental.ui.Palette");
+		for (IExtension extension : extensionPoint.getExtensions()) {
+			for (IConfigurationElement e : extension.getConfigurationElements()) {
+				try {
+					PaletteDesc pDesc = new PaletteDesc();
+					pDesc.setName(e.getAttribute("name"));
+					pDesc.setId(e.getAttribute("id"));
+					IColorProvider provider = (IColorProvider) e.createExecutableExtension("class");
+					pDesc.setProvider(provider);
+					palettesMap.put(pDesc.getId(), pDesc);
+				}
+				catch (CoreException e1){
+					e1.printStackTrace();
+				}
+			}
+		}
+	}
 }

@@ -14,6 +14,7 @@ import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Display;
 
+import com.artal.rental.ui.PaletteDesc;
 import com.artal.rental.ui.RentalUIActivator;
 import com.artal.rental.ui.pref.RentalColorPreferences;
 import com.artal.rental.ui.pref.RentalPreferences;
@@ -81,7 +82,7 @@ public class RentalProvider extends LabelProvider implements ITreeContentProvide
 		return display;
 	}
 
-	private class Node {
+	public class Node {
 
 		public static final String CUSTOMER = "Customers";
 		public static final String LOCATION = "Locations";
@@ -160,27 +161,32 @@ public class RentalProvider extends LabelProvider implements ITreeContentProvide
 
 	@Override
 	public Color getForeground(Object element) {
-		if (element instanceof Customer) {
-			return getAColor(RentalUIActivator.getDefault().getPreferenceStore().getString(RentalColorPreferences.P_CUST_COLOR));
-		}
-		if (element instanceof RentalAgency) {
-			return getAColor(RentalUIActivator.getDefault().getPreferenceStore().getString(RentalColorPreferences.P_AGENCY_COLOR));
-		}
-		if (element instanceof Node) {
-			return Display.getCurrent().getSystemColor(SWT.COLOR_DARK_YELLOW);
-		}
-		if (element instanceof RentalObject) {
-			return getAColor(RentalUIActivator.getDefault().getPreferenceStore().getString(RentalColorPreferences.P_OBJECT_COLOR));
-		}
-		if (element instanceof Rental) {
-			return getAColor(RentalUIActivator.getDefault().getPreferenceStore().getString(RentalColorPreferences.P_RENTAL_COLOR));
-		}
-		return null;
+		String palId = RentalUIActivator.getDefault().getPreferenceStore().getString("PREF_PALETTE");
+		PaletteDesc pDesc = RentalUIActivator.getDefault().getPalettesMap().get(palId);
+		return pDesc.getProvider().getForeground(element);
+//		if (element instanceof Customer) {
+//			return getAColor(RentalUIActivator.getDefault().getPreferenceStore().getString(RentalColorPreferences.P_CUST_COLOR));
+//		}
+//		if (element instanceof RentalAgency) {
+//			return getAColor(RentalUIActivator.getDefault().getPreferenceStore().getString(RentalColorPreferences.P_AGENCY_COLOR));
+//		}
+//		if (element instanceof Node) {
+//			return Display.getCurrent().getSystemColor(SWT.COLOR_DARK_YELLOW);
+//		}
+//		if (element instanceof RentalObject) {
+//			return getAColor(RentalUIActivator.getDefault().getPreferenceStore().getString(RentalColorPreferences.P_OBJECT_COLOR));
+//		}
+//		if (element instanceof Rental) {
+//			return getAColor(RentalUIActivator.getDefault().getPreferenceStore().getString(RentalColorPreferences.P_RENTAL_COLOR));
+//		}
+//		return null;
 	}
 
 	@Override
 	public Color getBackground(Object element) {
-		return Display.getCurrent().getSystemColor(SWT.COLOR_WHITE);
+		String palId = RentalUIActivator.getDefault().getPreferenceStore().getString("PREF_PALETTE");
+		PaletteDesc pDesc = RentalUIActivator.getDefault().getPalettesMap().get(palId);
+		return pDesc.getProvider().getBackground(element);
 	}
 	
 	@Override

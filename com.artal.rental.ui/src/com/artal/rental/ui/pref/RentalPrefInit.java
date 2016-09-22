@@ -7,9 +7,9 @@ import org.eclipse.swt.graphics.RGB;
 
 import com.artal.rental.ui.RentalUIActivator;
 
-public class ColorPrefInit extends AbstractPreferenceInitializer {
+public class RentalPrefInit extends AbstractPreferenceInitializer {
 
-	public ColorPrefInit() {
+	public RentalPrefInit() {
 		// TODO Auto-generated constructor stub
 	}
 
@@ -20,7 +20,7 @@ public class ColorPrefInit extends AbstractPreferenceInitializer {
 		store.setDefault(RentalColorPreferences.P_CUST_COLOR, StringConverter.asString(new RGB(100, 200, 250)));
 		store.setDefault(RentalColorPreferences.P_OBJECT_COLOR, StringConverter.asString(new RGB(100, 200, 250)));
 		store.setDefault(RentalColorPreferences.P_RENTAL_COLOR, StringConverter.asString(new RGB(100, 200, 250)));
-
+		store.setDefault(PalettesPreferences.PREF_PALETTE, "com.artal.rental.ui.defaultPalette");
 	}
 
 }
