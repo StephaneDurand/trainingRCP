@@ -4,7 +4,9 @@ import org.eclipse.ui.IPageLayout;
 import org.eclipse.ui.IPerspectiveFactory;
 
 public class RentalPerspective implements IPerspectiveFactory {
-
+	
+	private static final String PERSPECTIVE_ID = "com.artal.rental.ui.RentalPerspective"; //$NON-NLS-1$
+	
 	/**
 	 * Creates the initial layout for a page.
 	 */
@@ -35,6 +37,10 @@ public class RentalPerspective implements IPerspectiveFactory {
 	 * Add perspective shortcuts to the perspective.
 	 */
 	private void addPerspectiveShortcuts(IPageLayout layout) {
+	}
+
+	public static String getPerspectiveId() {
+		return PERSPECTIVE_ID;
 	}
 
 }
