@@ -10,20 +10,6 @@
       </category>
       <view
             category="com.artal.rental.ui.views"
-            class="com.artal.rental.ui.views.RentalPropertyView"
-            id="com.artal.rental.ui.views.RentalPropertyView"
-            name="Rental Property View"
-            restorable="true">
-      </view>
-      <view
-            category="com.artal.rental.ui.views"
-            class="com.artal.rental.ui.views.RentalAgencyView"
-            id="com.artal.rental.ui.views.RentalAgencyView"
-            name="Rental Agency View"
-            restorable="true">
-      </view>
-      <view
-            category="com.artal.rental.ui.views"
             class="com.artal.rental.ui.views.RentalCustomerView"
             id="com.artal.rental.ui.views.RentalCustomerView"
             name="Customer View"

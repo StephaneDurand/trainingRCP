@@ -1,23 +1,21 @@
-package com.artal.rental.ui.views;
+package com.artal.rental.ui.e4.views;
 
 import java.util.ArrayList;
 import java.util.Collection;
 
+import javax.annotation.PostConstruct;
+
+import org.eclipse.e4.ui.di.Focus;
 import org.eclipse.jface.action.MenuManager;
-import org.eclipse.jface.util.IPropertyChangeListener;
-import org.eclipse.jface.util.PropertyChangeEvent;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Menu;
-import org.eclipse.ui.IViewSite;
-import org.eclipse.ui.PartInitException;
-import org.eclipse.ui.part.ViewPart;
 
 import com.artal.rental.core.RentalCoreActivator;
-import com.artal.rental.ui.RentalUIActivator;
+import com.artal.rental.ui.views.RentalProvider;
 import com.opcoach.training.rental.RentalAgency;
 
-public class RentalAgencyView extends ViewPart implements IPropertyChangeListener {
+public class RentalAgencyView {
 
 	private TreeViewer tv;
 
@@ -25,7 +23,7 @@ public class RentalAgencyView extends ViewPart implements IPropertyChangeListene
 		// TODO Auto-generated constructor stub
 	}
 
-	@Override
+	@PostConstruct
 	public void createPartControl(Composite parent) {
 		tv = new TreeViewer(parent);
 		RentalProvider rt = new RentalProvider();
@@ -35,37 +33,25 @@ public class RentalAgencyView extends ViewPart implements IPropertyChangeListene
 		agencies.add(RentalCoreActivator.getAgency());
 		tv.setInput(agencies);
 		tv.expandAll();
-		getSite().setSelectionProvider(tv);
+		// E34 getSite().setSelectionProvider(tv);
 		MenuManager menuManager = new MenuManager();
 		Menu menu = menuManager.createContextMenu(tv.getControl());
 		tv.getControl().setMenu(menu);
-		getSite().registerContextMenu(menuManager, tv);
+		//E34 getSite().registerContextMenu(menuManager, tv);
 
 	}
 
-	@Override
+	@Focus
 	public void setFocus() {
 		// TODO Auto-generated method stub
 
 	}
 	
-	
-	@Override
-	public void init(IViewSite site) throws PartInitException {
-		super.init(site);
-		RentalUIActivator.getDefault().getPreferenceStore().addPropertyChangeListener(this);
-	}
-	
-	@Override
-	public void dispose() {
-		RentalUIActivator.getDefault().getPreferenceStore().removePropertyChangeListener(this);
-		super.dispose();
-	}
-
-	@Override
-	public void propertyChange(PropertyChangeEvent event) {
-		tv.refresh();
-		tv.expandAll();
-		
-	}
+//E34	
+//	@Override
+//	public void propertyChange(PropertyChangeEvent event) {
+//		tv.refresh();
+//		tv.expandAll();
+//		
+//	}
 }

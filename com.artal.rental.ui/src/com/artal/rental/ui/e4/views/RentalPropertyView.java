@@ -1,9 +1,8 @@
-package com.artal.rental.ui.views;
+package com.artal.rental.ui.e4.views;
 
-import javax.xml.transform.TransformerFactoryConfigurationError;
+import javax.annotation.PostConstruct;
 
-import org.eclipse.jface.viewers.ISelection;
-import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.e4.ui.di.Focus;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.dnd.DragSource;
@@ -16,16 +15,12 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
-import org.eclipse.ui.ISelectionListener;
-import org.eclipse.ui.IViewSite;
-import org.eclipse.ui.IWorkbenchPart;
-import org.eclipse.ui.PartInitException;
-import org.eclipse.ui.part.ViewPart;
 
 import com.artal.rental.core.RentalCoreActivator;
 import com.opcoach.training.rental.Rental;
 
-public class RentalPropertyView extends ViewPart implements ISelectionListener {
+
+public class RentalPropertyView {
 
 	private Label rentedObjectLabel;
 	
@@ -45,7 +40,7 @@ public class RentalPropertyView extends ViewPart implements ISelectionListener {
 		// TODO Auto-generated constructor stub
 	}
 
-	@Override
+	@PostConstruct
 	public void createPartControl(Composite parent) {
 		parent.setLayout(new GridLayout(1, false));
 		
@@ -101,7 +96,7 @@ public class RentalPropertyView extends ViewPart implements ISelectionListener {
 
 	}
 
-	@Override
+	@Focus
 	public void setFocus() {
 		// TODO Auto-generated method stub
 
@@ -114,27 +109,28 @@ public class RentalPropertyView extends ViewPart implements ISelectionListener {
 		finLabel.setText(rental.getEndDate().toString());
 	}
 	
-	@Override
-	public void init(IViewSite site) throws PartInitException {
-		super.init(site);
-		getSite().getPage().addSelectionListener(this);
-	}
-	
-	@Override
-	public void dispose() {
-		getSite().getPage().removeSelectionListener(this);
-		super.dispose();
-	}
-	
-	@Override
-	public void selectionChanged(IWorkbenchPart part, ISelection selection) {
-		if (selection instanceof IStructuredSelection) {
-			Object selected = ((IStructuredSelection) selection).getFirstElement();
-			if (selected instanceof Rental) {
-				setRental((Rental) selected);
-			}
-		}
-	}
+//	@Override
+//	public void init(IViewSite site) throws PartInitException {
+//		super.init(site);
+//		getSite().getPage().addSelectionListener(this);
+//	}
+//	
+//	@Override
+//	public void dispose() {
+//		getSite().getPage().removeSelectionListener(this);
+//		super.dispose();
+//	}
+
+	//E34 gestion de la migration
+//	@Override
+//	public void selectionChanged(IWorkbenchPart part, ISelection selection) {
+//		if (selection instanceof IStructuredSelection) {
+//			Object selected = ((IStructuredSelection) selection).getFirstElement();
+//			if (selected instanceof Rental) {
+//				setRental((Rental) selected);
+//			}
+//		}
+//	}
 	
 	public void setLabelAsDragSource(final Label label) {
 		DragSource source = new DragSource(label, DND.DROP_MOVE | DND.DROP_COPY);
