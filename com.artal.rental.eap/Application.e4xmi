@@ -4,12 +4,16 @@
     <children xsi:type="advanced:PerspectiveStack" xmi:id="_6wlLkMgZEeSyMNYR5xypkQ" elementId="org.eclipse.ui.ide.perspectivestack">
       <children xsi:type="advanced:Perspective" xmi:id="_6wlLkcgZEeSyMNYR5xypkQ" elementId="com.artal.rental.eap.perspective.sample">
         <children xsi:type="basic:PartSashContainer" xmi:id="_6wlLksgZEeSyMNYR5xypkQ" elementId="com.artal.rental.eap.partsashcontainer.sample" horizontal="true">
-          <children xsi:type="basic:PartStack" xmi:id="_6wlLk8gZEeSyMNYR5xypkQ" elementId="com.artal.rental.eap.partstack.sample">
-            <children xsi:type="basic:Part" xmi:id="_6wlLlMgZEeSyMNYR5xypkQ" elementId="com.artal.rental.eap.part.sample" contributionURI="bundleclass://com.artal.rental.ui/com.artal.rental.ui.e4.views.RentalPropertyView" label="Rental Properties View"/>
-            <children xsi:type="basic:Part" xmi:id="_192JkIFsEeaGleX4F5jM_g" elementId="com.artal.rental.eap.part.customer" contributionURI="bundleclass://com.artal.rental.ui/com.artal.rental.ui.e4.views.RentalCustomerView" label="Customer View"/>
-          </children>
           <children xsi:type="basic:PartStack" xmi:id="_QtB6gIDUEeaft_rudhF0qQ" elementId="com.artal.rental.eap.partstack.0">
             <children xsi:type="basic:Part" xmi:id="_4JkLwIDTEeaft_rudhF0qQ" elementId="com.artal.rental.eap.part.agency" contributionURI="bundleclass://com.artal.rental.ui/com.artal.rental.ui.e4.views.RentalAgencyView" label="Agency Properties View"/>
+          </children>
+          <children xsi:type="basic:PartSashContainer" xmi:id="_lACV4IFyEeaGleX4F5jM_g" elementId="com.artal.rental.eap.partsashcontainer.0">
+            <children xsi:type="basic:PartStack" xmi:id="_6wlLk8gZEeSyMNYR5xypkQ" elementId="com.artal.rental.eap.partstack.sample">
+              <children xsi:type="basic:Part" xmi:id="_6wlLlMgZEeSyMNYR5xypkQ" elementId="com.artal.rental.eap.part.sample" contributionURI="bundleclass://com.artal.rental.ui/com.artal.rental.ui.e4.views.RentalPropertyView" label="Rental Properties View"/>
+            </children>
+            <children xsi:type="basic:PartStack" xmi:id="_tdki4IFyEeaGleX4F5jM_g" elementId="com.artal.rental.eap.partstack.1">
+              <children xsi:type="basic:Part" xmi:id="_192JkIFsEeaGleX4F5jM_g" elementId="com.artal.rental.eap.part.customer" contributionURI="bundleclass://com.artal.rental.ui/com.artal.rental.ui.e4.views.RentalCustomerView" label="Customer View"/>
+            </children>
           </children>
         </children>
       </children>

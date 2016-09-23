@@ -4,6 +4,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.eclipse.e4.core.di.annotations.Optional;
+import org.eclipse.e4.core.services.adapter.Adapter;
 import org.eclipse.e4.ui.di.Focus;
 import org.eclipse.e4.ui.services.IServiceConstants;
 import org.eclipse.swt.SWT;
@@ -12,11 +13,10 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
-import org.eclipse.ui.part.ViewPart;
 
 import com.opcoach.training.rental.Customer;
 
-public class RentalCustomerView extends ViewPart {
+public class RentalCustomerView {
 
 	private Label lblCustomername;
 
@@ -54,11 +54,12 @@ public class RentalCustomerView extends ViewPart {
 	}
 	
 	@Inject @Optional
-	public void selectCustomer(@Named(IServiceConstants.ACTIVE_SELECTION)  Customer c) {
-		if (c == null) {
+	public void selectCustomer(@Named(IServiceConstants.ACTIVE_SELECTION)  Object o,
+			Adapter adapter) {
+		if (o == null) {
 			setCustomerName(null);
 		}
-		setCustomerName(c);
+		setCustomerName(adapter.adapt(o, Customer.class));
 	}
 	
 	@Inject @Optional
@@ -75,11 +76,6 @@ public class RentalCustomerView extends ViewPart {
 		
 	}
 
-	@Override
-	public void createPartControl(Composite parent) {
-		// TODO Auto-generated method stub
-		
-	}
 	
 }
 	
