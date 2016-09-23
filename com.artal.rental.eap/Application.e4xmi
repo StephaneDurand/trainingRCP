@@ -6,6 +6,7 @@
         <children xsi:type="basic:PartSashContainer" xmi:id="_6wlLksgZEeSyMNYR5xypkQ" elementId="com.artal.rental.eap.partsashcontainer.sample" horizontal="true">
           <children xsi:type="basic:PartStack" xmi:id="_6wlLk8gZEeSyMNYR5xypkQ" elementId="com.artal.rental.eap.partstack.sample">
             <children xsi:type="basic:Part" xmi:id="_6wlLlMgZEeSyMNYR5xypkQ" elementId="com.artal.rental.eap.part.sample" contributionURI="bundleclass://com.artal.rental.ui/com.artal.rental.ui.e4.views.RentalPropertyView" label="Rental Properties View"/>
+            <children xsi:type="basic:Part" xmi:id="_192JkIFsEeaGleX4F5jM_g" elementId="com.artal.rental.eap.part.customer" contributionURI="bundleclass://com.artal.rental.ui/com.artal.rental.ui.e4.views.RentalCustomerView" label="Customer View"/>
           </children>
           <children xsi:type="basic:PartStack" xmi:id="_QtB6gIDUEeaft_rudhF0qQ" elementId="com.artal.rental.eap.partstack.0">
             <children xsi:type="basic:Part" xmi:id="_4JkLwIDTEeaft_rudhF0qQ" elementId="com.artal.rental.eap.part.agency" contributionURI="bundleclass://com.artal.rental.ui/com.artal.rental.ui.e4.views.RentalAgencyView" label="Agency Properties View"/>
@@ -55,4 +56,5 @@
   <addons xmi:id="_6wlLdsgZEeSyMNYR5xypkQ" elementId="org.eclipse.e4.ui.workbench.handler.model" contributionURI="bundleclass://org.eclipse.e4.ui.workbench/org.eclipse.e4.ui.internal.workbench.addons.HandlerProcessingAddon"/>
   <addons xmi:id="_6wlLd8gZEeSyMNYR5xypkQ" elementId="org.eclipse.e4.ui.workbench.contexts.model" contributionURI="bundleclass://org.eclipse.e4.ui.workbench/org.eclipse.e4.ui.internal.workbench.addons.ContextProcessingAddon"/>
   <addons xmi:id="_6wlLeMgZEeSyMNYR5xypkQ" elementId="org.eclipse.e4.ui.workbench.bindings.model" contributionURI="bundleclass://org.eclipse.e4.ui.workbench.swt/org.eclipse.e4.ui.workbench.swt.util.BindingProcessingAddon"/>
+  <addons xmi:id="_smm48IFiEeaGleX4F5jM_g" elementId="com.artal.rental.eap.addon.0" contributionURI="bundleclass://com.artal.rental.ui/com.artal.rental.ui.RentalAddon"/>
 </application:Application>

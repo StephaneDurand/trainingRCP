@@ -1,8 +1,12 @@
 package com.artal.rental.ui.e4.views;
 
 import javax.annotation.PostConstruct;
+import javax.inject.Inject;
+import javax.inject.Named;
 
+import org.eclipse.e4.core.di.annotations.Optional;
 import org.eclipse.e4.ui.di.Focus;
+import org.eclipse.e4.ui.services.IServiceConstants;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.dnd.DragSource;
@@ -16,8 +20,8 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 
-import com.artal.rental.core.RentalCoreActivator;
 import com.opcoach.training.rental.Rental;
+import com.opcoach.training.rental.RentalAgency;
 
 
 public class RentalPropertyView {
@@ -34,6 +38,9 @@ public class RentalPropertyView {
 	private Composite dateComposite;
 	private Composite infoComposite;
 	
+	@Inject
+	private RentalAgency agency;
+	
 	
 
 	public RentalPropertyView() {
@@ -41,7 +48,7 @@ public class RentalPropertyView {
 	}
 
 	@PostConstruct
-	public void createPartControl(Composite parent) {
+	public void createPartControl(Composite parent, RentalAgency agency) {
 		parent.setLayout(new GridLayout(1, false));
 		
 		Group infoGroup =new Group(parent, SWT.NONE);
@@ -92,7 +99,7 @@ public class RentalPropertyView {
 		setLabelAsDragSource(finLabel);
 		setLabelAsDragSource(customerNameLabel);
 		
-		setRental(RentalCoreActivator.getAgency().getRentals().get(0));
+		setRental(agency.getRentals().get(0));
 
 	}
 
@@ -120,17 +127,14 @@ public class RentalPropertyView {
 //		getSite().getPage().removeSelectionListener(this);
 //		super.dispose();
 //	}
-
-	//E34 gestion de la migration
-//	@Override
-//	public void selectionChanged(IWorkbenchPart part, ISelection selection) {
-//		if (selection instanceof IStructuredSelection) {
-//			Object selected = ((IStructuredSelection) selection).getFirstElement();
-//			if (selected instanceof Rental) {
-//				setRental((Rental) selected);
-//			}
-//		}
-//	}
+	@Inject @Optional
+	public void receiveSelection(@Named(IServiceConstants.ACTIVE_SELECTION) Rental r) {
+		if (r == null) {
+			return;
+		}
+		setRental(r);
+	}
+	
 	
 	public void setLabelAsDragSource(final Label label) {
 		DragSource source = new DragSource(label, DND.DROP_MOVE | DND.DROP_COPY);
