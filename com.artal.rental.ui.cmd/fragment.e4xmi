@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="ASCII"?>
+<fragment:ModelFragments xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:commands="http://www.eclipse.org/ui/2010/UIModel/application/commands" xmlns:fragment="http://www.eclipse.org/ui/2010/UIModel/fragment" xmlns:menu="http://www.eclipse.org/ui/2010/UIModel/application/ui/menu" xmi:id="_eFAsYIGREeabhOgLZIC1vw">
+  <fragments xsi:type="fragment:StringModelFragment" xmi:id="_fx5sAIGREeabhOgLZIC1vw" featurename="commands" parentElementId="xpath:/">
+    <elements xsi:type="commands:Command" xmi:id="_iNFVAIGREeabhOgLZIC1vw" elementId="org.eclipse.ui.edit.copy" commandName="Copy"/>
+  </fragments>
+  <fragments xsi:type="fragment:StringModelFragment" xmi:id="_zMp0gIGREeabhOgLZIC1vw" featurename="handlers" parentElementId="xpath:/">
+    <elements xsi:type="commands:Handler" xmi:id="_2IBZcIGREeabhOgLZIC1vw" elementId="com.artal.rental.ui.cmd.handler.0" contributionURI="bundleclass://com.artal.rental.ui.cmd/com.artal.rental.ui.cmd.CopyCustomerHandler" command="_iNFVAIGREeabhOgLZIC1vw"/>
+  </fragments>
+  <fragments xsi:type="fragment:StringModelFragment" xmi:id="_65gLcIGREeabhOgLZIC1vw" featurename="menuContributions" parentElementId="xpath:/">
+    <elements xsi:type="menu:MenuContribution" xmi:id="_9ifm8IGREeabhOgLZIC1vw" elementId="com.artal.rental.ui.cmd.menucontribution.0" positionInParent="after=additions" parentId="com.artal.rental.eap.popupmenu.agencypopupmenu">
+      <children xsi:type="menu:HandledMenuItem" xmi:id="_I2lxYIGSEeabhOgLZIC1vw" elementId="com.artal.rental.ui.cmd.copy" label="Copy" command="_iNFVAIGREeabhOgLZIC1vw"/>
+    </elements>
+  </fragments>
+</fragment:ModelFragments>

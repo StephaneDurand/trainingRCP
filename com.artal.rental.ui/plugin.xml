@@ -1,47 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?eclipse version="3.4"?>
 <plugin>
+
    <extension-point id="Palette" name="Palette" schema="schema/Palette.exsd"/>
+
    <extension
          point="org.eclipse.ui.views">
       <category
-            id="com.artal.rental.ui.views"
-            name="Rental Views">
+            name="Rental Views"
+            id="com.artal.rental.ui.views">
       </category>
       <view
+            name="Customer View"
             category="com.artal.rental.ui.views"
             class="com.artal.rental.ui.views.RentalCustomerView"
-            id="com.artal.rental.ui.views.RentalCustomerView"
-            name="Customer View"
-            restorable="true">
+            restorable="true"
+            id="com.artal.rental.ui.views.RentalCustomerView">
       </view>
    </extension>
    <extension
          point="org.eclipse.ui.perspectives">
       <perspective
+            name="Rental Perspective"
             class="com.artal.rental.ui.RentalPerspective"
-            id="com.artal.rental.ui.RentalPerspective"
-            name="Rental Perspective">
+            id="com.artal.rental.ui.RentalPerspective">
       </perspective>
    </extension>
    <extension
          point="org.eclipse.ui.preferencePages">
       <page
+            name="Default"
             category="com.artal.rental.ui.pref.palettespref"
             class="com.artal.rental.ui.pref.RentalColorPreferences"
-            id="com.artal.rental.ui.pref.colorprefpage"
-            name="Default">
+            id="com.artal.rental.ui.pref.colorprefpage">
       </page>
       <page
+            name="Rental"
             class="com.artal.rental.ui.pref.RentalPreferences"
-            id="com.artal.rental.ui.pref.rentalpref"
-            name="Rental">
+            id="com.artal.rental.ui.pref.rentalpref">
       </page>
       <page
+            name="Palettes"
             category="com.artal.rental.ui.pref.rentalpref"
             class="com.artal.rental.ui.pref.PalettesPreferences"
-            id="com.artal.rental.ui.pref.palettespref"
-            name="Palettes">
+            id="com.artal.rental.ui.pref.palettespref">
       </page>
    </extension>
    <extension
@@ -53,15 +54,15 @@
    <extension
          point="org.eclipse.ui.commands">
       <command
-            id="com.artal.rental.ui.commands.sampleCommand"
-            name="Sample Command">
+            name="Sample Command"
+            id="com.artal.rental.ui.commands.sampleCommand">
       </command>
    </extension>
    <extension
          point="org.eclipse.ui.handlers">
       <handler
-            class="com.artal.rental.ui.cmds.SampleHandler"
-            commandId="com.artal.rental.ui.commands.sampleCommand">
+            commandId="com.artal.rental.ui.commands.sampleCommand"
+            class="com.artal.rental.ui.cmds.SampleHandler">
       </handler>
    </extension>
    <extension
@@ -93,15 +94,22 @@
    <extension
          point="com.artal.rental.ui.Palette">
       <Palette
+            name="Default"
             class="com.artal.rental.ui.palettes.DefaultPalette"
-            id="com.artal.rental.ui.defaultPalette"
-            name="Default">
+            id="com.artal.rental.ui.defaultPalette">
       </Palette>
       <Palette
+            name="Moche"
             class="com.artal.rental.ui.palettes.MochePalette"
-            id="com.artal.rental.ui.MochePalette"
-            name="Moche">
+            id="com.artal.rental.ui.MochePalette">
       </Palette>
+   </extension>
+   <extension
+         id="com.artal.rental.ui.fragment"
+         point="org.eclipse.e4.workbench.model">
+      <fragment
+            uri="fragment.e4xmi">
+      </fragment>
    </extension>
 
 </plugin>

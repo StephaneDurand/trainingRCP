@@ -7,6 +7,7 @@ import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
 import org.eclipse.e4.ui.di.Focus;
+import org.eclipse.e4.ui.services.EMenuService;
 import org.eclipse.e4.ui.workbench.modeling.ESelectionService;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
@@ -26,13 +27,13 @@ public class RentalAgencyView {
 	
 	@Inject
 	private ESelectionService selectionService;
-
+	
 	public RentalAgencyView() {
 		// TODO Auto-generated constructor stub
 	}
 
 	@Inject
-	public RentalAgencyView(Composite parent) {
+	public RentalAgencyView(Composite parent, EMenuService menuService) {
 		tv = new TreeViewer(parent);
 		RentalProvider rt = new RentalProvider();
 		tv.setContentProvider(rt);
@@ -42,10 +43,11 @@ public class RentalAgencyView {
 		tv.setInput(agencies);
 		tv.expandAll();
 		provideSelection();
-		MenuManager menuManager = new MenuManager();
-		Menu menu = menuManager.createContextMenu(tv.getControl());
-		tv.getControl().setMenu(menu);
+		//MenuManager menuManager = new MenuManager();
+		//Menu menu = menuManager.createContextMenu(tv.getControl());
+		//tv.getControl().setMenu(menu);
 		//E34 getSite().registerContextMenu(menuManager, tv);
+		menuService.registerContextMenu(tv.getControl(), "com.artal.rental.eap.popupmenu.agencypopupmenu");
 
 	}
 	

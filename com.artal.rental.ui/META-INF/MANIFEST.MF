@@ -5,6 +5,8 @@ Bundle-SymbolicName: com.artal.rental.ui;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: com.artal.rental.ui.RentalUIActivator
 Bundle-Vendor: ARTAL
+Export-Package: com.artal.rental.ui,
+ com.artal.rental.ui.e4.views
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  com.artal.rental.core;bundle-version="1.0.0";visibility:=reexport,
@@ -13,8 +15,7 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.e4.ui.workbench,
  org.eclipse.e4.ui.services,
  org.eclipse.e4.core.di.annotations,
- org.eclipse.e4.core.services;bundle-version="2.0.100"
+ org.eclipse.e4.core.services;bundle-version="2.0.100",
+ org.eclipse.e4.ui.model.workbench;bundle-version="1.2.0.v20160229-1459"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
-Export-Package: com.artal.rental.ui,
- com.artal.rental.ui.e4.views
