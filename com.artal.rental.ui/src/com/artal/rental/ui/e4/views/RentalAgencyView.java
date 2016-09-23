@@ -3,21 +3,21 @@ package com.artal.rental.ui.e4.views;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
+import org.eclipse.core.runtime.preferences.IEclipsePreferences;
+import org.eclipse.e4.core.di.extensions.Preference;
 import org.eclipse.e4.ui.di.Focus;
 import org.eclipse.e4.ui.services.EMenuService;
 import org.eclipse.e4.ui.workbench.modeling.ESelectionService;
-import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Menu;
 
 import com.artal.rental.core.RentalCoreActivator;
+import com.artal.rental.ui.pref.RentalColorPreferences;
 import com.artal.rental.ui.views.RentalProvider;
 import com.opcoach.training.rental.RentalAgency;
 
@@ -67,6 +67,13 @@ public class RentalAgencyView {
 	public void setFocus() {
 		// TODO Auto-generated method stub
 
+	}
+	
+	
+	@Inject
+	public void refreshTree(@Preference (value=RentalColorPreferences.P_CUST_COLOR) String custCol) {
+		tv.refresh();
+		tv.expandAll();	
 	}
 	
 //E34	

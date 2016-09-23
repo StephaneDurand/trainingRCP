@@ -111,5 +111,25 @@
             uri="fragment.e4xmi">
       </fragment>
    </extension>
+   <extension
+         point="com.opcoach.e4.preferences.e4PreferencePages">
+      <page
+            category="com.artal.rental.ui.pref.palettespref"
+            class="com.artal.rental.ui.pref.RentalColorPreferences"
+            id="com.artal.rental.ui.pref.colorprefpage"
+            name="Default">
+      </page>
+      <page
+            class="com.artal.rental.ui.pref.RentalPreferences"
+            id="com.artal.rental.ui.pref.rentalpref"
+            name="Rental">
+      </page>
+      <page
+            category="com.artal.rental.ui.pref.rentalpref"
+            class="com.artal.rental.ui.pref.PalettesPreferences"
+            id="com.artal.rental.ui.pref.palettespref"
+            name="Palettes">
+      </page>
+   </extension>
 
 </plugin>

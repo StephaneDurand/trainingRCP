@@ -10,10 +10,10 @@ import com.artal.rental.ui.RentalUIActivator;
 
 public class RentalColorPreferences extends FieldEditorPreferencePage implements IWorkbenchPreferencePage {
 	
-	public static String P_CUST_COLOR = "P_CUST_COLOR";
-	public static String P_RENTAL_COLOR = "P_RENTAL_COLOR";
-	public static String P_OBJECT_COLOR = "P_OBJECT_COLOR";
-	public static String P_AGENCY_COLOR = "P_AGENCY_COLOR";
+	public final static String P_CUST_COLOR = "P_CUST_COLOR";
+	public final static String P_RENTAL_COLOR = "P_RENTAL_COLOR";
+	public final static String P_OBJECT_COLOR = "P_OBJECT_COLOR";
+	public final static String P_AGENCY_COLOR = "P_AGENCY_COLOR";
 
 	public RentalColorPreferences() {
 		super(GRID);
